@@ -1,0 +1,144 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #7C83FD inset !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Slabo 27px', serif;
+  word-spacing: 3;
+}
+
+body {
+  background-color: #96BAFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body img {
+  position: absolute;
+  z-index: -3;
+}
+
+body img:first-of-type {
+  width: 500px;
+  bottom: 20px;
+  right: 0;
+}
+
+body img:last-of-type {
+  width: 400px;
+  bottom: 20px;
+  left: 30px;
+}
+
+body h1 {
+  color: white;
+  margin: 40px 0 40px;
+  font-size: 4rem;
+}
+
+#task-form {
+  background: #7c82fd;
+  color: white;
+  padding: 10px;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#task-form label {
+  font-size: 1.2rem;
+}
+
+#task-form input {
+  width: 50%;
+  height: 40px;
+  color: white;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  padding: 0px 20px;
+}
+
+#task-form button {
+  color: white;
+  background: none;
+  border-radius: 50%;
+  border: none;
+}
+
+#task-form button:first-of-type:hover {
+  color: darkgreen;
+}
+
+#task-form button:last-of-type:hover {
+  color: red;
+}
+
+#root {
+  width: 60%;
+  margin-top: 50px;
+  background: #7c82fdaf;
+}
+
+#root .task-container {
+  background: #6a71fd;
+  color: white;
+  width: 90%;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+#root .task-container .task-update-input {
+  border: none;
+  color: white;
+  outline: none;
+  width: 60%;
+  font-size: 1.2rem;
+  padding: 5px 20px;
+}
+
+#root .task-container .task-update-input:focus {
+  color: black;
+}
+
+#root .task-container .created-at {
+  display: inline;
+  margin: 0 10px 0 20px;
+}
+
+#root .task-container .btn {
+  color: white;
+  background: none;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+}
+
+#root .task-container .btn-update:hover {
+  color: black;
+}
+
+#root .task-container .btn-complete:hover {
+  color: darkgreen;
+}
+
+#root .task-container .btn-delete:hover {
+  color: red;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,18 @@
+form => 
+    input field => taking input from User
+        use this input for creating a task => store the task to array and display task on dom
+        task ={
+            taskId = ,
+            desc = ,
+            isCompleted = false,
+            createdAt = ,
+            isEdited = ,
+            editedAt = ,
+        } 
+        task displaying on dom should be editable => use input filed for display task on dom
+        there should be a delete and modify button on each task
+
+    button(add todo) => adding the todo 
+    button(cancel) => clear the field
+
+
