@@ -138,6 +138,7 @@ const deleteTodo = (e) =>{
     const todoId = e.target.parentElement.id;
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
+    alert(`You are deleting "${taskarr[index].desc}"`);
     taskarr.splice(index, 1);
     setlocalStorage();
 
