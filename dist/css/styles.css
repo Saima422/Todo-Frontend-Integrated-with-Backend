@@ -37,10 +37,28 @@ body img:first-of-type {
   right: 0;
 }
 
+@media (max-width: 780px) {
+  body img:first-of-type {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  body img:first-of-type {
+    display: unset;
+  }
+}
+
 body img:last-of-type {
   width: 400px;
   bottom: 20px;
   left: 30px;
+}
+
+@media (max-width: 450px) {
+  body img:last-of-type {
+    display: none;
+  }
 }
 
 body h1 {
@@ -57,6 +75,30 @@ body h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+@media (max-width: 1500px) {
+  #task-form {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1180px) {
+  #task-form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1135px) {
+  #task-form {
+    width: 90%;
+  }
+}
+
+@media (max-width: 920px) {
+  #task-form {
+    width: 95%;
+  }
 }
 
 #task-form label {
@@ -96,6 +138,30 @@ body h1 {
   background: #7c82fdaf;
 }
 
+@media (max-width: 1500px) {
+  #root {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1180px) {
+  #root {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1135px) {
+  #root {
+    width: 90%;
+  }
+}
+
+@media (max-width: 920px) {
+  #root {
+    width: 95%;
+  }
+}
+
 #root .task-container {
   background: #6a71fd;
   color: white;
@@ -117,9 +183,29 @@ body h1 {
   color: black;
 }
 
+@media (max-width: 860px) {
+  #root .task-container .task-update-input {
+    width: 75%;
+  }
+}
+
+@media (max-width: 641px) {
+  #root .task-container .task-update-input {
+    width: 100%;
+  }
+}
+
 #root .task-container .created-at {
   display: inline;
   margin: 0 10px 0 20px;
+}
+
+@media (max-width: 641px) {
+  #root .task-container .created-at {
+    padding: 20px 0;
+    margin-bottom: 0;
+    display: block;
+  }
 }
 
 #root .task-container .btn {
