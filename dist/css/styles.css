@@ -215,16 +215,4 @@ body h1 {
   margin: 5px;
   border: none;
 }
-
-#root .task-container .btn-update:hover {
-  color: black;
-}
-
-#root .task-container .btn-complete:hover {
-  color: darkgreen;
-}
-
-#root .task-container .btn-delete:hover {
-  color: red;
-}
 /*# sourceMappingURL=styles.css.map */

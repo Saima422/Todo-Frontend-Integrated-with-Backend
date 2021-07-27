@@ -1,7 +1,45 @@
 const taskForm = document.getElementById('task-form');
 const root = document.getElementById('root');
 
-const taskarr = [];
+let taskarr = [];
+
+window.onload = function() {
+    previousArr = JSON.parse(localStorage.getItem('tasks'));
+    if(previousArr != null){
+        previousArr.forEach((item) => {
+            displayOnDOM(createTaskEl(item));
+            checkAllValues(item);
+        });
+        taskarr = [...previousArr];
+        previousArr = [];
+    }
+    return ;
+  };
+
+const checkAllValues = (el) => {
+    if(el.isCompleted){
+        const completedObj = document.getElementById(el.taskId);
+        let strValue = completedObj.childNodes[0];
+        strValue.style = "text-decoration: line-through";
+
+        const disableBtn = completedObj.childNodes[2];
+        disableBtn.disabled = true;
+        disableBtn.style.color = 'grey';
+
+        const undobtn = completedObj.childNodes[3];
+        undobtn.setAttribute('onclick', `undoComplete(event)`);
+        undobtn.classList.remove('fas','fa-check-double');
+        undobtn.classList.add('fas','fa-undo');
+    }
+    if(el.isEdited){
+        const updateObj = document.getElementById(el.taskId);
+
+        if(!updateObj.childNodes[0].value.includes(' -(edited)')){
+            updateObj.childNodes[0].value += ' -(edited)';
+        }
+    }
+    return ;
+}
 
 function TaskConstructor(desc){
     this.taskId = uuidv4();
@@ -17,7 +55,6 @@ const getTime = () => {
     var time = today.getHours()+ ":" + today.getMinutes();
     var dateTime = `${time} ${date}`;
 
-
     return dateTime;
 }
 
@@ -29,6 +66,10 @@ const validateInput = (validateStr) => {
     throw new Error("Invalid String"); 
 }
 
+const setlocalStorage = () => {
+    localStorage.setItem('tasks',JSON.stringify(taskarr));
+}
+
 const taskSubmission = (e) => {
     e.preventDefault();
     let taskInputValue = document.taskInput.task.value;
@@ -38,6 +79,7 @@ const taskSubmission = (e) => {
     document.taskInput.task.value = "";
     const task = new TaskConstructor(taskInputValue);
     taskarr.push(task);
+    setlocalStorage();
     const taskContainer = createTaskEl(task);
     displayOnDOM(taskContainer);
 }
@@ -69,7 +111,6 @@ const createTaskEl = (task) => {
     markup.appendChild(btn1);
     btn1.setAttribute('onclick', `updateTodo(event)`);
 
-
     const btn2 = document.createElement('button');
     btn2.classList.add('btn', 'btn-complete');
     const i2 = document.createElement('i');
@@ -98,6 +139,7 @@ const deleteTodo = (e) =>{
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
     taskarr.splice(index, 1);
+    setlocalStorage();
 
     const removeObj = document.getElementById(todoId);
     removeObj.remove();
@@ -108,14 +150,16 @@ const completedTodo = (e) => {
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
     taskarr[index].isCompleted = true;
+    setlocalStorage();
 
     const completedObj = document.getElementById(todoId);
 
-    // ***********************************
-    // console.log(completedObj);
-
     let strValue = completedObj.childNodes[0];
     strValue.style = "text-decoration: line-through";
+
+    const disableBtn = completedObj.childNodes[2];
+    disableBtn.disabled = true;
+    disableBtn.style.color = 'grey';
 
     const undobtn = completedObj.childNodes[3];
     undobtn.setAttribute('onclick', `undoComplete(event)`);
@@ -128,19 +172,21 @@ const undoComplete = (e) => {
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
     taskarr[index].isCompleted = false;
+    setlocalStorage();
 
     const completedObj = document.getElementById(todoId);
-// **********************************
-    // console.log(completedObj);
 
     let strValue = completedObj.childNodes[0];
     strValue.style = "text-decoration: unset";
 
+    const disableBtn = completedObj.childNodes[2];
+    disableBtn.disabled = false;
+    disableBtn.style.color = 'white';
+    
     const undobtn = completedObj.childNodes[3];
     undobtn.setAttribute('onclick', `completedTodo(event)`);
     undobtn.classList.remove('fas','fa-undo');
     undobtn.classList.add('fas','fa-check-double');
-
 } 
 
 const updateTodo = (e) => {
@@ -148,12 +194,13 @@ const updateTodo = (e) => {
 
     const updateObj = document.getElementById(todoId);
 
-    // *********************************
-    // console.log(updateObj.childNodes);
-
     let strValue = updateObj.childNodes[0];
     strValue.disabled = false;
     strValue.style.color = "black";
+
+    const disableBtn = updateObj.childNodes[3];
+    disableBtn.disabled = true;
+    disableBtn.style.color = 'grey';
 
     const updatebtn = updateObj.childNodes[2];
     updatebtn.setAttribute('onclick', `confirmTodo(event)`);
@@ -166,9 +213,6 @@ const confirmTodo = (e) => {
 
     const updateObj = document.getElementById(todoId);
 
-    // *********************************
-    // console.log(updateObj.childNodes);
-
     let strValue = updateObj.childNodes[0];
     let valueUpdated = strValue.value;
 
@@ -177,11 +221,19 @@ const confirmTodo = (e) => {
 
     strValue.disabled = true;
     strValue.style.color = "white";
-    updateObj.childNodes[0].value += '  -(edited)';
+
+    const disableBtn = updateObj.childNodes[3];
+    disableBtn.disabled = false;
+    disableBtn.style.color = 'white';
+
+    if(!updateObj.childNodes[0].value.includes(' -(edited)')){
+        updateObj.childNodes[0].value += ' -(edited)';
+    }
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
     taskarr[index].isEdited = true;
     taskarr[index].desc = valueUpdated;
+    setlocalStorage();
 
     const updatebtn = updateObj.childNodes[2];
     updatebtn.setAttribute('onclick', `updateTodo(event)`);
