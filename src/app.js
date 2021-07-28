@@ -137,16 +137,19 @@ const displayOnDOM = (taskContainer) => {
 const deleteTodo = (e) =>{
     const todoId = e.target.parentElement.id;
 
+    // console.log(taskarr);
     let index = taskarr.findIndex(item => item.taskId === todoId);
     alert(`You are deleting "${taskarr[index].desc}"`);
 
-    triggerDelete(taskarr[index].desc);
+    // triggerDelete(taskarr[index].desc);
 
     taskarr.splice(index, 1);
     setlocalStorage();
 
     const removeObj = document.getElementById(todoId);
     removeObj.remove();
+
+    // console.log(taskarr);
 }
 
 const completedTodo = (e) => {
