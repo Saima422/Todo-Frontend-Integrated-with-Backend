@@ -139,6 +139,9 @@ const deleteTodo = (e) =>{
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
     alert(`You are deleting "${taskarr[index].desc}"`);
+
+    triggerDelete(taskarr[index].desc);
+
     taskarr.splice(index, 1);
     setlocalStorage();
 
@@ -215,9 +218,9 @@ const confirmTodo = (e) => {
     const updateObj = document.getElementById(todoId);
 
     let strValue = updateObj.childNodes[0];
+    // strValue = strValue.value.trim();
     let valueUpdated = strValue.value;
 
-    // value not getting trimmed********************************
     valueUpdated = validateInput(valueUpdated);    
 
     strValue.disabled = true;
@@ -228,7 +231,10 @@ const confirmTodo = (e) => {
     disableBtn.style.color = 'white';
 
     if(!updateObj.childNodes[0].value.includes(' -(edited)')){
-        updateObj.childNodes[0].value += ' -(edited)';
+        updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim() + ' -(edited)';
+    }
+    else{
+        updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim();
     }
 
     let index = taskarr.findIndex(item => item.taskId === todoId);
