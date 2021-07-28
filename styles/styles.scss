@@ -20,7 +20,8 @@ select:-webkit-autofill:focus {
 }
 
 body{
-    background-color: #96BAFF;
+    background: linear-gradient(#96bbff, #848ad1);
+    // background-color: #96BAFF;
     position: relative;
     display: flex;
     flex-direction: column;
