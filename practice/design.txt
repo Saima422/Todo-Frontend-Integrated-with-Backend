@@ -1,0 +1,63 @@
+app.js --> onload()
+components
+    task.js --> append to rootdiv [input: task object  =>output: <div>(todo)]
+        => eventlistner --> updateTodo / deleteTodo on buttons
+apicall
+    apicalls.js --> fetch data
+actions
+    domOperations.js create task 
+        --[ => getTodos() function
+            => updateTodo() function / completeTodo() function
+            => deleteTodo() function ]
+
+
+
+Folder Structure
+
+index.html
+src
+    --> app.js
+    -- components
+        --> task.js
+    -- apiCalls
+        --> taskAPI.js
+    -- actions
+        --> domOperations.js
+styles
+assets
+    -- images
+
+
+features
+
+display all tasks if any
+create a new task and should be added to dom
+update an exisiting task and data should be reflected on dom
+    -- iscomplete
+    -- content
+    -- updated At
+delete an exisiting task and should be removed from dom
+flow
+display all tasks
+    -- 1. make an api call to backend
+    -- 2. check for data or error
+        -- if error display appropiate msg
+        -- if no error show data in ui
+    (additional notes) for each task have a separate structure
+create a new task
+    --1. make an api call with appropiate body
+    --2. check for data or error
+        -- if error display appropiate msg
+        -- if data create a separate structure of that data and add it to dom
+delete an exisiting task
+    --1. make an api call to backend with task id
+    --2. check for statuscode or error
+        -- if error display appropiate msg
+        -- check statuscode if 204 remove deleted task from the dom
+update an exisiting task
+    --1. check if content or iscomplete was changed
+    --2. make an api call to backend with body and taskid
+    --3. check for data  or error
+        -- if error display appropiate msg
+        -- if data update an exisiting specified task
+    (additional notes) if content not changed dont make api call to the backend
