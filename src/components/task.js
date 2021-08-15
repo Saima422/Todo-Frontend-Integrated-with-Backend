@@ -8,11 +8,15 @@ export const createTaskEl = (task) => {
     const markup = document.createElement('div');
     markup.classList.add('task-container');
     markup.id = task.taskId;
+    markup.isEdited = false;
 
     const input = document.createElement('input');
     input.classList.add('task-update-input');
     input.value = task.content; 
     input.disabled = true;
+    input.addEventListener('change', () => {
+        markup.isEdited = true;
+    })
     markup.appendChild(input);
 
     const para = document.createElement('p');

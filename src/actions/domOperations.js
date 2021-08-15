@@ -1,7 +1,8 @@
 import { apiRequest } from "../apiCalls/taskApi.js";
 import { createTaskEl } from "../components/task.js";
 
-const url = "http://192.168.0.105:3000/tasks";
+// const url = "http://192.168.0.105:3000/tasks";
+const url = "https://rocky-ocean-88181.herokuapp.com/tasks";
 let obj;
 
 
@@ -111,7 +112,12 @@ const confirmTodo = (e) => {
     let createTime = e.target.parentElement.childNodes[1].innerText;
     let presentTime = getTime();
 
-    updateCall(e, valueUpdated, createTime, presentTime, false);
+    if(updateObj.isEdited){
+        updateCall(e, valueUpdated, createTime, presentTime, false);
+        console.log("api call");
+        updateObj.isEdited = false;
+    }
+
 
     e.target.parentElement.childNodes[1].innerText = presentTime;
    
