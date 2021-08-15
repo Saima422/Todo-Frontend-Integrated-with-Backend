@@ -17,6 +17,12 @@ export const createTaskEl = (task) => {
     input.addEventListener('change', () => {
         markup.isEdited = true;
     })
+    if(task.isComplete){
+        input.style.textDecoration = "line-through";
+    }
+    // if(task.updatedAt != ""){
+    //     input.value += " -(edited)";
+    // }
     markup.appendChild(input);
 
     const para = document.createElement('p');
