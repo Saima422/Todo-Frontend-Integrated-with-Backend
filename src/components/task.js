@@ -1,5 +1,5 @@
 
-import { deleteTodo, completedTodo, updateTodo } from "../actions/domOperations.js";
+import { deleteTodo, completedTodo, updateTodo, undoComplete } from "../actions/domOperations.js";
 
 const root = document.getElementById('root');
 
@@ -17,12 +17,6 @@ export const createTaskEl = (task) => {
     input.addEventListener('change', () => {
         markup.isEdited = true;
     })
-    if(task.isComplete){
-        input.style.textDecoration = "line-through";
-    }
-    // if(task.updatedAt != ""){
-    //     input.value += " -(edited)";
-    // }
     markup.appendChild(input);
 
     const para = document.createElement('p');
@@ -54,6 +48,16 @@ export const createTaskEl = (task) => {
     markup.appendChild(btn3);
     btn3.addEventListener('click', deleteTodo);
 
+    if(task.isComplete){
+        input.style.textDecoration = "line-through";
+        btn1.disabled = true;
+        btn1.style.color = 'grey';
+        btn2.removeEventListener('click', completedTodo);
+        btn2.addEventListener('click', undoComplete);
+        btn2.classList.remove('fas','fa-check-double', 'undone');
+        btn2.classList.add('fas','fa-undo', 'done');
+    }
+    
     displayOnDOM(markup);
 };
 

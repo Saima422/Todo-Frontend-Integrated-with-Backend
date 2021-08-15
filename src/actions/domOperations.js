@@ -102,11 +102,13 @@ const confirmTodo = (e) => {
     disableBtn.disabled = false;
     disableBtn.style.color = 'white';
 
-    if(!updateObj.childNodes[0].value.includes(' -(edited)')){
+    if(!updateObj.childNodes[0].value.includes(' -(edited)') && updateObj.isEdited){
         updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim() + ' -(edited)';
+        valueUpdated = updateObj.childNodes[0].value;
     }
     else{
         updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim();
+        valueUpdated = updateObj.childNodes[0].value;
     }
 
     let createTime = e.target.parentElement.childNodes[1].innerText;
@@ -155,7 +157,7 @@ export const completedTodo = (e) => {
     undobtn.classList.add('fas','fa-undo', 'done');
 }
 
-const undoComplete = (e) => {
+export const undoComplete = (e) => {
     const todoId = e.target.parentElement.id;
     let createTime = e.target.parentElement.childNodes[1].innerText;
     let presentTime = getTime();
