@@ -75,6 +75,7 @@ export const updateTodo = (e) => {
     let strValue = updateObj.childNodes[0];
     strValue.disabled = false;
     if(updateObj.childNodes[0].value.includes(' -(edited)')){
+        updateObj.addEdit = true;
         updateObj.childNodes[0].value = updateObj.childNodes[0].value.replace(' -(edited)','').trim();
     }
     strValue.style.color = "black";
@@ -108,6 +109,9 @@ const confirmTodo = (e) => {
     if(!updateObj.childNodes[0].value.includes(' -(edited)') && updateObj.isEdited){
         updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim() + ' -(edited)';
         valueUpdated = updateObj.childNodes[0].value;
+    }
+    else if(updateObj.addEdit){
+        updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim() + ' -(edited)';
     }
     else{
         updateObj.childNodes[0].value = updateObj.childNodes[0].value.trim();
