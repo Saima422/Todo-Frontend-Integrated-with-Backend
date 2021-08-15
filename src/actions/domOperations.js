@@ -74,6 +74,9 @@ export const updateTodo = (e) => {
 
     let strValue = updateObj.childNodes[0];
     strValue.disabled = false;
+    if(updateObj.childNodes[0].value.includes(' -(edited)')){
+        updateObj.childNodes[0].value = updateObj.childNodes[0].value.replace(' -(edited)','').trim();
+    }
     strValue.style.color = "black";
 
     const disableBtn = updateObj.childNodes[3];

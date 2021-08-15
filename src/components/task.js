@@ -21,7 +21,12 @@ export const createTaskEl = (task) => {
 
     const para = document.createElement('p');
     para.classList.add('created-at');
-    para.innerText = task.createdAt;
+    if(task.updatedAt != ""){
+        para.innerText = task.updatedAt;
+    }
+    else{
+        para.innerText = task.createdAt;
+    }
     markup.appendChild(para);
 
     const btn1 = document.createElement('button');
