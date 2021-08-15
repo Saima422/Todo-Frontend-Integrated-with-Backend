@@ -72,13 +72,9 @@ From your command line:
 ## Contact
 
 * Author - Saima Sayed 
-
 * [Connect on LinkedIn](https://www.linkedin.com/in/saima-sayed-6482481b9/)
-
 * [Project Resources (Frontend))](https://github.com/Saima422/Todo-Frontend-Integrated-with-Backend)
-
 * [Github Live Link](https://saima422.github.io/Todo-Frontend-Integrated-with-Backend/)
-
 * [Netlify Live Link](https://hopeful-tesla-59c08e.netlify.app/)
 
 
