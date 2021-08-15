@@ -47,6 +47,8 @@ From your command line:
 └── styles
     └── styles.scss
 ```
+## Application View
+![](https://saima422.github.io/Image-JSON-Data-Repo/images/todo-list-app.png)
 
 ## Scope and Functionality
 
@@ -62,31 +64,28 @@ From your command line:
 * User Authentication.
 * Each User should have access to only their tasks.
 
-## Sources
-
-* [Node.js Documentation](https://nodejs.org/dist/latest-v14.x/docs/api/)
-* [Node.js - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Glossary/Node.js?retiredLocale=hu)
-* [Introduction to Node.js](https://nodejs.dev/learn)
+## Referred Resources
+* [HTTP requests](https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/)
+* [Using Fetch [MDN Web Docs]](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+* [async-await [MDN Web Docs]](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await)
 
 ## Contact
 
-Author - Saima Sayed 
+* Author - Saima Sayed 
 <br>
-LinkedIn - https://www.linkedin.com/in/saima-sayed-6482481b9/
+* [Connect on LinkedIn](https://www.linkedin.com/in/saima-sayed-6482481b9/)
 <br>
-Project Resources (Frontend)) - https://github.com/Saima422/Todo-Frontend-Integrated-with-Backend
+* [Project Resources (Frontend))](https://github.com/Saima422/Todo-Frontend-Integrated-with-Backend)
 <br>
-Github Live Link -
+* [Github Live Link](https://saima422.github.io/Todo-Frontend-Integrated-with-Backend/)
 <br>
-Netlify Live Link -
-<br>
-<a href="#" class="button primary">Netlify Live Link</a> 
+* [Netlify Live Link](https://hopeful-tesla-59c08e.netlify.app/)
 
 
 
 ## Also Refer
 You can also refer to the backend Todo-List server integrated with this frontend repo <br>
-[Todo-List Backend Repo](https://github.com/Saima422/ToDo-Backend-Node.js)
+* [Todo-List Backend Repo](https://github.com/Saima422/ToDo-Backend-Node.js)
 
 
 
