@@ -11,7 +11,9 @@ export const apiRequest = async (url, obj = {}) => {
         return fetchedData;
 
     }catch(err){
-        console.log(err);
+        return  err;
+        // throw alert("Server is Unavailable ",err);
+        // console.log(err);
     }
 }
 

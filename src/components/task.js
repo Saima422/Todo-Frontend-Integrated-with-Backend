@@ -3,7 +3,6 @@ import { deleteTodo, completedTodo, updateTodo, undoComplete } from "../actions/
 
 const root = document.getElementById('root');
 
-
 export const createTaskEl = (task) => {
     const markup = document.createElement('div');
     markup.classList.add('task-container');

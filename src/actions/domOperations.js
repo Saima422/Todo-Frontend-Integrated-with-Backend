@@ -23,11 +23,22 @@ const getTime = () => {
     return dateTime;
 }
 
+const checkIfOnline = () =>{
+    if(navigator.onLine){
+        return true;
+    }
+    return false;
+}
 
 export const addTodo = async (event) => {
     event.preventDefault();
     let taskInputValue = document.taskInput.task.value;
     document.taskInput.task.value = "";
+
+    if(!checkIfOnline()){
+        alert("You are Offline");
+        return ;
+    }
 
     obj = {
         method: 'POST',
@@ -43,9 +54,19 @@ export const addTodo = async (event) => {
 
 
 export const deleteTodo = (e) => {
+
+    if(!checkIfOnline()){
+        alert("You are Offline");
+        return ;
+    }
+
     obj = {
         method: 'DELETE'
     }
+    // if(err){
+    //     console.log(err);
+    //     alert("there is an error");
+    // }
     const todoId = e.target.parentElement.id;
     const removeObj = document.getElementById(todoId);
     alert(`You are Deleting Task "${removeObj.childNodes[0].value}"`);
@@ -68,6 +89,12 @@ export const updateCall = (event, valueUpdated, createTime, time, bool) => {
 }
 
 export const updateTodo = (e) => {
+
+    if(!checkIfOnline()){
+        alert("You are Offline");
+        return ;
+    }
+
     const todoId = e.target.parentElement.id;
 
     const updateObj = document.getElementById(todoId);
@@ -79,6 +106,8 @@ export const updateTodo = (e) => {
         updateObj.childNodes[0].value = updateObj.childNodes[0].value.replace(' -(edited)','').trim();
     }
     strValue.style.color = "black";
+
+    updateObj.prevValue = updateObj.childNodes[0].value;
 
     const disableBtn = updateObj.childNodes[3];
     disableBtn.disabled = true;
@@ -92,6 +121,20 @@ export const updateTodo = (e) => {
 }
 
 const confirmTodo = (e) => {
+
+    if(!checkIfOnline()){
+        let val = e.target.parentElement;
+        val.childNodes[0].value = val.prevValue;
+        val.childNodes[0].disabled = true;
+        val.childNodes[0].style.color = "white";
+        alert("You are Offline");
+        const updatebtn = val.childNodes[2];
+        updatebtn.removeEventListener('click', confirmTodo);
+        updatebtn.addEventListener('click', updateTodo);
+        updatebtn.classList.remove('far','fa-check-circle');
+        updatebtn.classList.add('fa','fa-edit');
+        return ;
+    }
     const todoId = e.target.parentElement.id;
 
     const updateObj = document.getElementById(todoId);
@@ -139,6 +182,12 @@ const confirmTodo = (e) => {
 
 
 export const completedTodo = (e) => {
+
+    if(!checkIfOnline()){
+        alert("You are Offline");
+        return ;
+    }
+
     const todoId = e.target.parentElement.id;
     let createTime = e.target.parentElement.childNodes[1].innerText;
     let presentTime = getTime();
@@ -165,6 +214,12 @@ export const completedTodo = (e) => {
 }
 
 export const undoComplete = (e) => {
+
+    if(!checkIfOnline()){
+        alert("You are Offline");
+        return ;
+    }
+
     const todoId = e.target.parentElement.id;
     let createTime = e.target.parentElement.childNodes[1].innerText;
     let presentTime = getTime();
