@@ -7,18 +7,16 @@ var __webpack_exports__ = {};
 const apiRequest = async (url, obj = {}) => {
     try{
         const response = await fetch(url, obj);
-        if(await response.status === 204){
-            return ;
+        if(await response.status === 204 && obj.method === "DELETE"){
+            return true;
         }
         const data = await response.json();
         const fetchedData = await data.data;
-
         return fetchedData;
 
     }catch(err){
-        return  err;
-        // throw alert("Server is Unavailable ",err);
-        // console.log(err);
+        alert("Server Offline");
+        return false;
     }
 }
 
@@ -99,13 +97,14 @@ const displayOnDOM = (taskContainer) => {
 
 
 
-// const url = "http://192.168.0.105:3000/tasks";
+// const url = "http://192.168.0.105:4000/tasks";
 const url = "https://rocky-ocean-88181.herokuapp.com/tasks";
 let obj;
 
 
 const getTodos = async () => {
     let resData = await apiRequest(`${url}`);
+   
     resData.forEach((item) => {
         createTaskEl(item);
     });
@@ -147,11 +146,13 @@ const addTodo = async (event) => {
     }
 
     const resData = await apiRequest(`${url}`, obj);
-    createTaskEl(resData);
+    if(resData){
+        createTaskEl(resData);
+    }
 }
 
 
-const deleteTodo = (e) => {
+const deleteTodo = async (e) => {
 
     if(!checkIfOnline()){
         alert("You are Offline");
@@ -161,19 +162,19 @@ const deleteTodo = (e) => {
     obj = {
         method: 'DELETE'
     }
-    // if(err){
-    //     console.log(err);
-    //     alert("there is an error");
-    // }
+   
     const todoId = e.target.parentElement.id;
     const removeObj = document.getElementById(todoId);
     alert(`You are Deleting Task "${removeObj.childNodes[0].value}"`);
-    apiRequest(`${url}/${todoId}`, obj);
-    removeObj.remove();
+    let val = await apiRequest(`${url}/${todoId}`, obj);
+    if(val){
+        removeObj.remove();
+    }
+    return ;
 }
 
 
-const updateCall = (event, valueUpdated, createTime, time, bool) => {
+const updateCall = async(event, valueUpdated, createTime, time, bool) => {
 
     obj = {
         method: 'POST',
@@ -183,7 +184,10 @@ const updateCall = (event, valueUpdated, createTime, time, bool) => {
         } 
     }
     const todoId = event.target.parentElement.id;
-    apiRequest(`${url}/${todoId}`, obj);
+    let err = await apiRequest(`${url}/${todoId}`, obj);
+    if(err === false){
+        return false;
+    }
 }
 
 const updateTodo = (e) => {
@@ -218,7 +222,7 @@ const updateTodo = (e) => {
     updatebtn.classList.add('far','fa-check-circle');
 }
 
-const confirmTodo = (e) => {
+const confirmTodo = async (e) => {
 
     if(!checkIfOnline()){
         let val = e.target.parentElement;
@@ -263,11 +267,18 @@ const confirmTodo = (e) => {
     let presentTime = getTime();
 
     if(updateObj.isEdited){
-        updateCall(e, valueUpdated, createTime, presentTime, false);
-        console.log("api call");
+        let val = await updateCall(e, valueUpdated, createTime, presentTime, false);
+        if(val === false){
+            updateObj.childNodes[0].value = updateObj.prevValue;
+            const updatebtn = updateObj.childNodes[2];
+            updatebtn.removeEventListener('click', confirmTodo);
+            updatebtn.addEventListener('click', updateTodo);
+            updatebtn.classList.remove('far','fa-check-circle');
+            updatebtn.classList.add('fa','fa-edit');
+            return ;
+        }
         updateObj.isEdited = false;
     }
-
 
     e.target.parentElement.childNodes[1].innerText = presentTime;
    
@@ -279,7 +290,7 @@ const confirmTodo = (e) => {
 }
 
 
-const completedTodo = (e) => {
+const completedTodo = async (e) => {
 
     if(!checkIfOnline()){
         alert("You are Offline");
@@ -291,7 +302,8 @@ const completedTodo = (e) => {
     let presentTime = getTime();
     let valueUpdated = e.target.parentElement.childNodes[0].value;
 
-    updateCall(e, valueUpdated, createTime, presentTime, true);
+    let val = await updateCall(e, valueUpdated, createTime, presentTime, true);
+    if(val === false){return }
 
     e.target.parentElement.childNodes[1].innerText = presentTime;
 
@@ -311,7 +323,7 @@ const completedTodo = (e) => {
     undobtn.classList.add('fas','fa-undo', 'done');
 }
 
-const undoComplete = (e) => {
+const undoComplete = async (e) => {
 
     if(!checkIfOnline()){
         alert("You are Offline");
@@ -323,7 +335,8 @@ const undoComplete = (e) => {
     let presentTime = getTime();
     let valueUpdated = e.target.parentElement.childNodes[0].value;
 
-    updateCall(e, valueUpdated, createTime, presentTime, false);
+    let val = await updateCall(e, valueUpdated, createTime, presentTime, false);
+    if(val === false){return }
 
     e.target.parentElement.childNodes[1].innerText = presentTime;
 
