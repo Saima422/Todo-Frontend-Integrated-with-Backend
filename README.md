@@ -76,7 +76,7 @@ From your command line:
 * [Project Resources (Frontend))](https://github.com/Saima422/Todo-Frontend-Integrated-with-Backend)
 * [Github Live Link](https://saima422.github.io/Todo-Frontend-Integrated-with-Backend/)
 * [Netlify Live Link](https://hopeful-tesla-59c08e.netlify.app/)
-* [Github live Link(Dist)](https://saima422.github.io/Todo-Frontend-Integrated-with-Backend/dist/index.html)
+* [Github Live Link (Dist)](https://saima422.github.io/Todo-Frontend-Integrated-with-Backend/dist/index.html)
 
 
 
