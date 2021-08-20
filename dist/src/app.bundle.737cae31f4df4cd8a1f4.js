@@ -97,8 +97,8 @@ const displayOnDOM = (taskContainer) => {
 
 
 
-// const url = "http://192.168.0.105:4000/tasks";
-const url = "https://rocky-ocean-88181.herokuapp.com/tasks";
+const url = "http://localhost:3000/tasks";
+// const url = "https://rocky-ocean-88181.herokuapp.com/tasks";
 let obj;
 
 
@@ -112,10 +112,12 @@ const getTodos = async () => {
 
 
 const getTime = () => {
-    var today = new Date();
-    var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-    var time = today.getHours()+ ":" + today.getMinutes();
-    var dateTime = `${time} ${date}`;
+    let today = new Date();
+    let date = ('0' + today.getDate()).slice(-2) + '/'
+    + ('0' + (today.getMonth()+1)).slice(-2) + '/'
+    + today.getFullYear();
+    let time = ('0' + today.getHours()).slice(-2) + ":" + ('0' + today.getMinutes()).slice(-2) + ":" + ('0' + today.getSeconds()).slice(-2);
+    let dateTime = `${time} ${date}`;
 
     return dateTime;
 }
@@ -146,6 +148,7 @@ const addTodo = async (event) => {
     }
 
     const resData = await apiRequest(`${url}`, obj);
+    // console.log(resData, " some content");
     if(resData){
         createTaskEl(resData);
     }
