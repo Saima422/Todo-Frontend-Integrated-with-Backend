@@ -3,7 +3,7 @@ Todo-List App makes API calls to server for storing and maintaining ToDo's.
 
 ## Introduction
 
-A simple frontend for ToDo Application created with Vanilla JS and integrated with a backend(uses file system for storage) which is hosted on heroku. Built with an aim to learn and implement creation of a frontend with a given backend. Todo Application supports functionalities of Adding, Updating, marking as Completed and Deleting a Todo. The application makes API calls to the backend for the same.
+A simple frontend for ToDo Application created with Vanilla JS and integrated with a backend which is hosted on heroku. Built with an aim to learn and implement creation of a frontend with a given backend. Todo Application supports functionalities of Adding, Updating, marking as Completed and Deleting a Todo. The application makes API calls to the backend for the same.
 
 ## Getting Started
 
@@ -82,7 +82,9 @@ From your command line:
 
 ## Also Refer
 You can also refer to the backend Todo-List server integrated with this frontend repo <br>
-* [Todo-List Backend Repo](https://github.com/Saima422/ToDo-Backend-Node.js)
+* [Todo-List Backend Repo (File System)](https://github.com/Saima422/ToDo-Backend-Node.js)
+* [Todo-List Backend Repo [MongoDB database (Adapter Implementation)]](https://github.com/Saima422/Todo-Backend-Mode-DB-FS)
+
 
 
 
